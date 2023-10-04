@@ -1,3 +1,4 @@
+import Button from "../components/Button"
 import Loader from "../components/Loader/Loader"
 
 function Home() {
@@ -5,6 +6,7 @@ function Home() {
     <>
     <h2>Home page</h2>
     <Loader/>
+    <Button/>
     </>
   )
 }
