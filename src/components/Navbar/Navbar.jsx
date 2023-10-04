@@ -3,7 +3,7 @@ import "./Navbar.css"
 function Navbar() {
   return (
     <header>
-      <div className="logo"></div>
+      <div className="myLogo">NexaPlan</div>
       <nav className="navigation">
         <ul>
           <li>
