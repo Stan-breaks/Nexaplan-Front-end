@@ -55,7 +55,7 @@ function Login() {
           />
         </div>
         <br />
-        <button class="btn btn-primary register" onClick={registerClick}>
+        <button class="btn btn-primary diff" onClick={registerClick}>
           Register
         </button>
         <button type="submit" class="btn btn-primary" onClick={handleClick}>
