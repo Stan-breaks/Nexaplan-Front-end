@@ -1,20 +1,20 @@
 import "./Footer.css"
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <ul>
-          <li>
-            <a href="/about">About</a>
-          </li>
-          <li>
-            <a href="/contact">Contact</a>
-          </li>
-          {/* Add more footer links as needed*/}
-        </ul>
-      </div>
+    <footer className="footer footer-dark">
       <div className="social-icons">
-        {/* Social media icons (e.g., Facebook, Twitter) */}
+        <a href="https://www.linkedin.com/in/stanley-mwendwa-5a594b233/">
+          <i class="fa-brands fa-linkedin"></i>
+          Linkedin
+        </a>
+        <a href="mailto:stanleymwendwa03@gmail.com">
+          <i class="fa-solid fa-envelope"></i>
+          Gmail
+        </a>
+        <a href="https://github.com/Stan-breaks">
+          <i class="fa-brands fa-github"></i>
+          Github
+        </a>
       </div>
       <div className="copyright">
         &copy; 2023 NexaPlan. All rights reserved.

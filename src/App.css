@@ -7,5 +7,5 @@ body {
   margin-right:20px;
   position: relative;
   min-height: 100vh;
-  padding-top: 120px; /* Adjust the padding-top to move the content below the header */
+  padding-top: 50px; /* Adjust the padding-top to move the content below the header */
 }

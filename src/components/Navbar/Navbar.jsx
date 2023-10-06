@@ -33,6 +33,50 @@ function Navbar() {
               Projects
             </a>
           </div>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+          <div class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Profile
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="dashboard">
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="analytics">
+                  Analytics
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="profile">
+                  Settings
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
