@@ -1,6 +1,13 @@
 import "./Navbar.css"
 
 function Navbar() {
+ const preventBack=()=>{
+  window.history.forward();
+ }
+ const logoutClick=()=>{
+  setTimeout(preventBack(),0.5);
+  window.onunload=()=>{null}
+ }
   return (
     <nav
       class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary"
@@ -56,22 +63,22 @@ function Navbar() {
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="dashboard">
+                <a class="dropdown-item" href="/dashboard">
                   Dashboard
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="analytics">
+                <a class="dropdown-item" href="/analytics">
                   Analytics
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="profile">
+                <a class="dropdown-item" href="/profile">
                   Settings
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/" onClick={logoutClick}>
                   Logout
                 </a>
               </li>
