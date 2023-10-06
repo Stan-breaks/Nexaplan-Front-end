@@ -1,0 +1,23 @@
+#emailHelp{
+ color: red;
+}
+form{
+    width: 60%;
+    margin: auto;
+}
+.pageHeader{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.error{
+    color: red;
+    display: none;
+    transition: all 0.5s ease;
+}
+.btn{
+    margin-right: 30%;
+}
+.register{
+    background-color: grey;
+    border-color:grey ;
+}
