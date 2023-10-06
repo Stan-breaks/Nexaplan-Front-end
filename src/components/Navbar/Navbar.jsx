@@ -2,26 +2,40 @@ import "./Navbar.css"
 
 function Navbar() {
   return (
-    <header>
-      <div className="myLogo">NexaPlan</div>
-      <nav className="navigation">
-        <ul>
-          <li>
-            <a href="/home">Home</a>
-          </li>
-          <li>
-            <a href="/tasks">Tasks</a>
-          </li>
-          <li>
-            <a href="/projects">Projects</a>
-          </li>
-          {/* Add more navigation links as needed */}
-        </ul>
-      </nav>
-      <div className="user-options">
-        {/* User account options (e.g., profile, logout) */}
+    <nav
+      class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary"
+      data-bs-theme="dark"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          NexaPlan
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="/">
+              Home
+            </a>
+            <a class="nav-link" href="/tasks">
+              Tasks
+            </a>
+            <a class="nav-link" href="/projects">
+              Projects
+            </a>
+          </div>
+        </div>
       </div>
-    </header>
+    </nav>
   );
 }
 export default Navbar

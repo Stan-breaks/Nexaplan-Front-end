@@ -1,34 +1,23 @@
-header{
-    background-color: #333;
-    color: #fff;
-    padding: 16px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+  height: 100%; 
 }
 
-.myLogo{
-    margin-right:30px;
-    font-size: 24px;
-    font-weight: bold;
+.nav-link {
+  margin-right: 4
+  0px; 
+  color: #000; 
+  text-decoration: none; 
+  transition: all 0.3s ease; 
 }
-.navigation ul{
-    list-style: none;
-    padding: 0;
-    display: flex;
+
+.nav-link:hover {
+  color: #3498db; 
 }
-.navigation ul li{
-    margin-right:50%;
-}
-.navigation ul li a{
-    text-decoration: none;
-    color: #fff;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-.navigation ul li a:hover{
-    color:#3498db
+.navbar-brand{
+    font-size: xx-large;
+    padding-right: 100px;
 }
