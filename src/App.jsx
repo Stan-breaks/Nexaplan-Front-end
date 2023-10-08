@@ -13,7 +13,6 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
         <div className="app">
           <Routes>
             <Route index element={<Login />}></Route>
@@ -22,7 +21,6 @@ function App() {
             <Route element={<NotFound />}></Route>
           </Routes>
         </div>
-        <Footer />
       </Router>
     </>
   );

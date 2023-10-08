@@ -1,5 +1,7 @@
+import { useState } from "react";
 import "./Authentication.css"
 function Login() {
+  const display=useState()
   const validateEmail = (email) => {
   return email.match(
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -24,6 +26,8 @@ function Login() {
   }
   return (
     <>
+      <h1>NexaPlan</h1>
+      <p>Your Time, Our Priority.</p>
       <h3 className="pageHeader">Login Page</h3>
       <form>
         <div className="error">
@@ -55,11 +59,11 @@ function Login() {
           />
         </div>
         <br />
-        <button class="btn btn-primary diff" onClick={registerClick}>
-          Register
-        </button>
         <button type="submit" class="btn btn-primary" onClick={handleClick}>
           Submit
+        </button>
+        <button class="btn btn-primary diff" onClick={registerClick}>
+          Register
         </button>
       </form>
     </>

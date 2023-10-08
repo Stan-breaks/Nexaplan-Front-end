@@ -1,7 +1,7 @@
 import "./Footer.css"
 function Footer() {
   return (
-    <footer className="footer footer-dark">
+    <footer className="footer footer-dark" >
       <div className="social-icons">
         <a href="https://www.linkedin.com/in/stanley-mwendwa-5a594b233/">
           <i class="fa-brands fa-linkedin"></i>
