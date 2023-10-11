@@ -18,9 +18,9 @@ function ProjectForm() {
       description,
       collaborators: collaborators.split(",").map((item) => item.trim()), // assuming collaborators are comma separated
     };
-    console.log(project);
     dispatch(addProject(project));
-    console.log(projects);
+    // console.log(projects);
+    window.location.href="./projectList"
   };
 
   return (
