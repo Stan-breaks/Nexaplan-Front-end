@@ -21,9 +21,12 @@ function TaskForm() {
       description, // Add this line
       done: false,
     };
+
+    // fetch();
     console.log(task);
     dispatch(addTask(task));
-    console.log(tasks);
+    window.location.href="./taskList";
+
   }
 
 
