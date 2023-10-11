@@ -1,7 +1,11 @@
+import { useSelector,useDispatch } from "react-redux";
 import { useState } from "react";
 import "./Authentication.css"
+import { setUser } from "../../reducers/actions";
 function Login() {
-  const display=useState()
+  const user=useSelector(state=>state.user);
+  const dispatch=useDispatch();
+
   const validateEmail = (email) => {
   return email.match(
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -16,6 +20,9 @@ function Login() {
     ) {
       document.querySelector(".error").style.display = "block";
     } else {
+
+      //assign the user after fetching from the server
+      dispatch(setUser(user))
       window.location.href = "/home";
     }
       
@@ -34,35 +41,35 @@ function Login() {
           <h4>Invalid email or password</h4>
           <br />
         </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
           />
-          <div id="emailHelp" class="form-text">
+          <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
           </div>
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label>
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             id="exampleInputPassword1"
           />
         </div>
         <br />
-        <button type="submit" class="btn btn-primary" onClick={handleClick}>
+        <button type="submit" className="btn btn-primary" onClick={handleClick}>
           Submit
         </button>
-        <button class="btn btn-primary diff" onClick={registerClick}>
+        <button className="btn btn-primary diff" onClick={registerClick}>
           Register
         </button>
       </form>

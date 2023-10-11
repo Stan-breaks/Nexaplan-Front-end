@@ -4,15 +4,15 @@ function Footer() {
     <footer className="footer footer-dark" >
       <div className="social-icons">
         <a href="https://www.linkedin.com/in/stanley-mwendwa-5a594b233/">
-          <i class="fa-brands fa-linkedin"></i>
+          <i className="fa-brands fa-linkedin"></i>
           Linkedin
         </a>
         <a href="mailto:stanleymwendwa03@gmail.com">
-          <i class="fa-solid fa-envelope"></i>
+          <i className="fa-solid fa-envelope"></i>
           Gmail
         </a>
         <a href="https://github.com/Stan-breaks">
-          <i class="fa-brands fa-github"></i>
+          <i className="fa-brands fa-github"></i>
           Github
         </a>
       </div>

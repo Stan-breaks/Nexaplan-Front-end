@@ -1,7 +1,7 @@
 
-export const AddProject=project=>({
+export const addProject=project=>({
     type:"ADD_PROJECT",
-    payload:task,
+    payload:project,
 });
 
 export const addTask=task=>({
@@ -18,3 +18,16 @@ export const removeProject =id=>({
     type:'REMOVE_PROJECT',
     payload:id,
 });
+
+export const toggleTask=(id,task)=>({
+    type:'TOGGLE_TASK',
+    payload:{id,task},
+})
+
+export const setUser=user=>({
+    type:'SET_USER',
+    payload:user,
+})
+export const clearUser=()=>({
+   type:'CLEAR_USER', 
+})

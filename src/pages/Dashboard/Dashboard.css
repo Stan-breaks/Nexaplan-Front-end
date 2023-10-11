@@ -1,0 +1,21 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+h3 {
+  color: #333;
+  text-align: center;
+}
+
+h4 {
+  color: #666;
+  margin-top: 20px;
+}
+
+div {
+  margin-bottom: 20px;
+}
+
+p {
+  color: #999;
+}

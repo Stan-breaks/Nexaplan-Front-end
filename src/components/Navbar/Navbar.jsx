@@ -1,24 +1,29 @@
+import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.css"
+import { clearUser } from "../../reducers/actions";
 
 function Navbar() {
- const preventBack=()=>{
-  window.history.forward();
- }
+  
+  //getting the state and action from the redux store
+ const user=useSelector(state=>state.user);
+ const dispatch=useDispatch();
+
  const logoutClick=()=>{
-  setTimeout(preventBack(),0.5);
-  window.onunload=()=>{null}
+  //logout implementation
+  dispatch(clearUser());
+  window.location.href='/';
  }
   return (
     <nav
-      class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary"
+      className="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary"
       data-bs-theme="dark"
     >
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/">
           NexaPlan
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavAltMarkup"
@@ -26,34 +31,34 @@ function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="/">
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <a className="nav-link active" aria-current="page" href="/home">
               Home
             </a>
-            <a class="nav-link" href="/tasks">
+            <a className="nav-link" href="/taskList">
               Tasks
             </a>
-            <a class="nav-link" href="/projects">
+            <a className="nav-link" href="/projectList">
               Projects
             </a>
           </div>
-          <form class="d-flex" role="search">
+          <form className="d-flex" role="search">
             <input
-              class="form-control me-2"
+              className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
             />
-            <button class="btn btn-outline-success" type="submit">
+            <button className="btn btn-outline-success" type="submit">
               Search
             </button>
           </form>
-          <div class="nav-item dropdown">
+          <div className="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle"
+              className="nav-link dropdown-toggle"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
@@ -61,24 +66,24 @@ function Navbar() {
             >
               Profile
             </a>
-            <ul class="dropdown-menu">
+            <ul className="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="/dashboard">
+                <a className="dropdown-item" href="/dashboard">
                   Dashboard
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="/analytics">
+                <a className="dropdown-item" href="/analytics">
                   Analytics
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="/profile">
+                <a className="dropdown-item" href="/profile">
                   Settings
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="/" onClick={logoutClick}>
+                <a className="dropdown-item" href="/" onClick={logoutClick}>
                   Logout
                 </a>
               </li>
