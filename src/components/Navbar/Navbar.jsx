@@ -73,12 +73,17 @@ function Navbar() {
                 </a>
               </li>
               <li>
+                <a className="dropdown-item" href="/profile">
+                  View Profile
+                </a>
+              </li>
+              <li>
                 <a className="dropdown-item" href="/analytics">
                   Analytics
                 </a>
               </li>
               <li>
-                <a className="dropdown-item" href="/profile">
+                <a className="dropdown-item" href="/setting">
                   Settings
                 </a>
               </li>

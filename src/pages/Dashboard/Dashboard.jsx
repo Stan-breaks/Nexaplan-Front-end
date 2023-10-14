@@ -3,7 +3,7 @@ import Layout from "../Layout";
 import "./Dashboard.css"
 
 function Dashboard() {
-  const projects = useSelector((state) => state.projects);
+  const projects = useSelector((state) => state.projects.projects);
   const tasks = projects.flatMap((project) => project.tasks);
 
   const totalProjects = projects.length;

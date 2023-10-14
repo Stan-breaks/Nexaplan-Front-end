@@ -1,0 +1,22 @@
+.settings {
+  width: 300px;
+  margin: auto;
+}
+
+.settings form {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings label {
+  margin-bottom: 10px;
+}
+
+.settings input {
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.settings button {
+  margin-top: 20px;
+}

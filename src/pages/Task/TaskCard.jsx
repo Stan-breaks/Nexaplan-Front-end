@@ -8,7 +8,7 @@ function TaskCard({task,onDelete}) {
       <div className="task-actions">
         <button className="delete-button" onClick={() => onDelete(task.id)}>
           Delete
-        </button>
+        </button> 
       </div>
     </li>
   );

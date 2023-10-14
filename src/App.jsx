@@ -10,6 +10,8 @@ import TaskList from "./pages/Task/TaskList";
 import ProjectForm from "./pages/Collaborator/projectForm";
 import ProjectList from "./pages/Collaborator/ProjectList";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Setting from "./pages/Setting/Setting";
+import Profile from "./pages/Profile/Profile";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -26,6 +28,8 @@ function App() {
             <Route path="/projectList" element={<ProjectList />}></Route>
             <Route path="/projectForm" element={<ProjectForm />}></Route>
             <Route path="/dashboard" element={<Dashboard/>}></Route>
+            <Route path="/setting" element={<Setting />}></Route>
+            <Route path="/profile" element={<Profile/>}></Route>
             <Route element={<NotFound />}></Route>
           </Routes>
         </div>

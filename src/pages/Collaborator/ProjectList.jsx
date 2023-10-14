@@ -8,7 +8,6 @@ function ProjectList() {
     <Layout>
       <div>
         <h1>Welcome to your Project List</h1>
-        <h2 className="pageHeader">Projects</h2>
         {projects.length > 0 ? (
           <ul>
             {projects.map((project, index) => (
@@ -22,6 +21,7 @@ function ProjectList() {
         ) : (
           <p>No projects found.</p>
         )}
+        <button onClick={()=>window.location.href='/projectForm'}>+</button>
       </div>
     </Layout>
   );
