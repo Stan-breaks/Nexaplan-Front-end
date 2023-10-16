@@ -52,19 +52,7 @@ function ProjectForm() {
             required
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="collaborators" className="form-label">
-            Collaborators (comma separated)
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="collaborators"
-            value={collaborators}
-            onChange={(e) => setCollaborators(e.target.value)}
-            required
-          />
-        </div>
+        
         <button
           type="submit"
           className="btn btn-primary"
