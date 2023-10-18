@@ -24,7 +24,7 @@ function TaskForm() {
 
     // fetch();
     console.log(task);
-    dispatch(addTask(task));
+    
     window.location.href="./taskList";
 
   }

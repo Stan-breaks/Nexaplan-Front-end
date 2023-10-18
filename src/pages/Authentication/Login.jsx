@@ -22,8 +22,18 @@ function Login() {
     } else {
 
       //assign the user after fetching from the server
-      dispatch(setUser(user))
-      window.location.href = "/home";
+      const user={
+        email:email,
+        password:password,
+      }
+      console.log(user);
+      fetch("http://127.0.0.1:8000/login",{
+        method:'POST',
+        body:JSON.stringify(user),
+      })
+        .then((response) => response.json())
+        .then((response) => console.log(response));
+      // window.location.href = "/home";
     }
       
   }
