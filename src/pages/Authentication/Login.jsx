@@ -35,7 +35,7 @@ function Login() {
         .then((response) => {
           console.log(response.message);
           console.log(response.user);
-          setUser(response.user);
+          dispatch(setUser(response.user));
           window.location.href = "/home";
         });
       

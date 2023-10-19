@@ -8,13 +8,11 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 import { persistStore, persistReducer } from "redux-persist";
 
 // Import your reducers here
-import tasksReducer from "./reducers/tasksReducer";
-import projectsReducer from "./reducers/projectsReducer";
+
 import userReducer from "./reducers/userReducer";
 
 const rootReducer = combineReducers({
-  tasks: tasksReducer,
-  projects: projectsReducer,
+
   user: userReducer,
   // Add more reducers as needed
 });

@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addProject } from "../../reducers/actions";
 import Layout from "../Layout";
 import { useState } from "react";
 
@@ -18,7 +17,7 @@ function ProjectForm() {
       description,
       collaborators: collaborators.split(",").map((item) => item.trim()), // assuming collaborators are comma separated
     };
-    dispatch(addProject(project));
+    
     // console.log(projects);
     window.location.href="./projectList"
   };

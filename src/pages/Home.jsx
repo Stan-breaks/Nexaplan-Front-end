@@ -1,14 +1,13 @@
 import Layout from "./Layout"
 import Loader from "../components/Loader/Loader"
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProjects, fetchTasks } from "../DataFetcher";
+// import { fetchProjects, fetchTasks } from "../DataFetcher";
 import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
 
 function Home() {
-  const tasksCount = useSelector(state => state.tasks.tasks.length);
-  const projectsCount = useSelector(state => state.projects.projects.length);
+ 
   const user=useSelector(state=>state.user.user)
-  console.log(tasksCount);
+  console.log(user)
   return (
    
       <Layout>
@@ -23,11 +22,11 @@ function Home() {
           <br/>
           
           <Link to="/taskList">
-            <button className="cta-button">View Tasks ({tasksCount})</button>
+            <button className="cta-button">View Tasks </button>
           </Link>
           <Link to="/projects">
             <button className="cta-button">
-              View Projects ({projectsCount})
+              View Projects 
             </button>
           </Link>
           

@@ -1,11 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addTask } from "../../reducers/actions";
+
 import Layout from "../Layout";
 import { useState } from "react";
 
 function TaskForm() {
-  const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks);
+  const user=useSelector((state)=>state.user)
 
   const [taskName, setTaskName] = useState('');
   const [isPrioritized, setIsPrioritized] = useState(false);
@@ -14,28 +13,31 @@ function TaskForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const task = {
-      name: taskName,
-      dueDate,
-      isPrioritized,
-      description, // Add this line
-      done: false,
-    };
+    if (user===''){
+      window.location.href='/'
+    }
+    else{
+      const task = {
+        taskName,
+        dueDate,
+        isPriority: isPrioritized,
+        taskDescription: description, // Add this line
+        done: false,
+        user:user.user,
+      };
 
-    fetch("http://127.0.0.1:8000/",{
-      method:'POST',
-      body:JSON.stringify(task)
-    })
-    .then(response=>response.json())
-    .then(response=>{
-      
-      console.log(response)
-    });
-    ;
-    console.log(task);
-    
-    window.location.href="./taskList";
-
+      fetch("http://127.0.0.1:8000/taskList", {
+        method: "POST",
+        body: JSON.stringify(task),
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(response);
+          window.location.href="./taskList";
+        });
+      console.log(task);
+    }
+ 
   }
 
 

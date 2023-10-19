@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { setUser } from "../../reducers/actions";
+import { useDispatch } from "react-redux";
 
 function Registration() {
   const[userName,setUserName]=useState('');
   const[email,setEmail]=useState('');
   const[password,setPassword]=useState('');
   const[confirmPassword,setConfirmPassword]=useState('');
+  
+  const dispatch=useDispatch()
 
   const validateEmail = (email) => {
     return email.match(
@@ -37,7 +40,7 @@ function Registration() {
             .then((response) => response.json())
             .then((response) => {
               console.log(response)
-              setUser(response.user)
+              dispatch(setUser(userName))
               window.location.href = "/home";
             });
             

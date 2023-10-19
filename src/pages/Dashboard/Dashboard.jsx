@@ -1,11 +1,28 @@
 import { useSelector } from "react-redux";
 import Layout from "../Layout";
 import "./Dashboard.css"
+import { useEffect, useState } from "react";
 
 function Dashboard() {
-  const projects = useSelector((state) => state.projects.projects);
-  const tasks = projects.flatMap((project) => project.tasks);
+  const [projects,setProjects] = useState([]);
+  const [tasks,setTasks] = useState([])
 
+  useEffect(()=>{
+     fetch("http://127.0.0.1:8000/taskList")
+       .then((response) => response.json())
+       .then((data) => {
+         console.log(data);
+         setTasks(data);
+       })
+       .catch((error) => console.error("There was an error!", error));
+        fetch("http://127.0.0.1:8000/projectList")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            setTasks(data);
+          })
+          .catch((error) => console.error("There was an error!", error));
+      },[])
   const totalProjects = projects.length;
   const totalTasks = tasks.length;
   const completedTasks = tasks.filter((task) => task.completed).length;

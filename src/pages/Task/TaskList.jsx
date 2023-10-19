@@ -1,25 +1,28 @@
 import { useSelector, useDispatch } from "react-redux";
 import TaskCard from "./TaskCard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import Layout from "../Layout";
-import { removeTask } from "../../reducers/actions";
+
 
 function TaskList() {
-    const dispatch=useDispatch();
-    const tasks=useSelector(state=>state.tasks);
+    
 
+ const [tasks, setTasks] = useState([]);
 
+ useEffect(() => {
+   fetch("http://127.0.0.1:8000/taskList")
+     .then((response) => response.json())
+     .then((data) => {
+       console.log(data);
+       setTasks(data);
+     })
+     .catch((error) => console.error("There was an error!", error));
+ }, []);
     const handleDelete=tasksId=>{
         dispatch(removeTask(tasksId))
     }
-    console.log(tasks);
-    useEffect(()=>{
-      // Fetch tasks using an API call and dispatch the setTasks action
-      // dispatch(setTasks(fetchedTasks));
-
-     
-    },[dispatch])
+    
   return (
     <Layout>
       <div className="tasklist">
