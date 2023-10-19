@@ -22,7 +22,16 @@ function TaskForm() {
       done: false,
     };
 
-    // fetch();
+    fetch("http://127.0.0.1:8000/",{
+      method:'POST',
+      body:JSON.stringify(task)
+    })
+    .then(response=>response.json())
+    .then(response=>{
+      
+      console.log(response)
+    });
+    ;
     console.log(task);
     
     window.location.href="./taskList";

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { setUser } from "../../reducers/actions";
 
 function Registration() {
   const[userName,setUserName]=useState('');
@@ -29,7 +30,17 @@ function Registration() {
             password,
           }
           console.log(user);
-            window.location.href = "/home";
+          fetch("http://127.0.0.1:8000/register",{
+            method:'POST',
+            body:JSON.stringify(user)
+          })
+            .then((response) => response.json())
+            .then((response) => {
+              console.log(response)
+              setUser(response.user)
+              window.location.href = "/home";
+            });
+            
         }       
     }
   };

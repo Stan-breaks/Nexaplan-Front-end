@@ -1,6 +1,7 @@
 import Layout from "./Layout"
 import Loader from "../components/Loader/Loader"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProjects, fetchTasks } from "../DataFetcher";
 import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
 
 function Home() {

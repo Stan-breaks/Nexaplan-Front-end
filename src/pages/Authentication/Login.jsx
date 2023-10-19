@@ -32,8 +32,13 @@ function Login() {
         body:JSON.stringify(user),
       })
         .then((response) => response.json())
-        .then((response) => console.log(response));
-      // window.location.href = "/home";
+        .then((response) => {
+          console.log(response.message);
+          console.log(response.user);
+          setUser(response.user);
+          window.location.href = "/home";
+        });
+      
     }
       
   }
