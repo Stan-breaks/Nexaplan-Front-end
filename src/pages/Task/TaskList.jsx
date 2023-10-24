@@ -7,11 +7,11 @@ import Layout from "../Layout";
 
 function TaskList() {
     
-
+ const user=useSelector(state=>state.user.user)
  const [tasks, setTasks] = useState([]);
 
  useEffect(() => {
-   fetch("http://127.0.0.1:8000/taskList")
+   fetch(`http://127.0.0.1:8000/taskList?user=${user}`)
      .then((response) => response.json())
      .then((data) => {
        console.log(data);
@@ -31,9 +31,9 @@ function TaskList() {
         <h2>Tasks</h2>
         <br/>
         {tasks.length>0 ? (
-          <ul>
+          <ul id='task'>
             {tasks.map((task) => (
-              <TaskCard key={task.name} task={task} onDelete={handleDelete}/>
+              <TaskCard key={task.id} task={task} onDelete={handleDelete}/>
             ))}
           </ul>
         ) : (

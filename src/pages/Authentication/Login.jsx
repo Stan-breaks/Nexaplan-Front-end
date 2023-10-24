@@ -34,9 +34,10 @@ function Login() {
         .then((response) => response.json())
         .then((response) => {
           console.log(response.message);
-          console.log(response.user);
-          dispatch(setUser(response.user));
-          window.location.href = "/home";
+          if (response.message==='login success'){
+           dispatch(setUser(response.user));
+           window.location.href='/home'
+          }
         });
       
     }
