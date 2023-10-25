@@ -42,7 +42,7 @@ function TaskList() {
         ) : (
          <p>No task found</p>
         )}
-        <button onClick={()=>window.location.href='/taskForm'}>+</button>
+        <button onClick={()=>window.location.href='/taskForm'}>Add task</button>
       </div>
     </Layout>
   );

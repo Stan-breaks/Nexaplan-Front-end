@@ -8,8 +8,17 @@ function TaskView() {
     const taskId=useSelector(state=>state.id.id);
 
     const handleComplete=()=>{
-
-    }
+    fetch(`http://127.0.0.1:8000/completeTask/${taskId}`,
+    {
+        method:'POST',
+        body:JSON.stringify({
+            done:true
+        })
+    })
+    .then(response=>response.json())
+    .then(response=>console.log(response))
+    location.reload(true);
+}
     const handleDelete=()=>{
 
     }
