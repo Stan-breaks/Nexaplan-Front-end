@@ -19,6 +19,7 @@ function TaskList() {
        setTasks(data);
      })
      .catch((error) => console.error("There was an error!", error));
+     
  }, []);
     const handleClick = (id) => {
       console.log(id);

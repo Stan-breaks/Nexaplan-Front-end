@@ -20,7 +20,15 @@ function TaskView() {
     location.reload(true);
 }
     const handleDelete=()=>{
-
+      fetch(`http://127.0.0.1:8000/deleteTask/${taskId}`, {
+        method: "POST",
+        body: JSON.stringify({
+          delete: true,
+        }),
+      })
+        .then((response) => response.json())
+        .then((response) => console.log(response));
+      window.history.back();
     }
     useEffect(()=>{
         fetch(`http://127.0.0.1:8000/taskView?id=${taskId}`)
