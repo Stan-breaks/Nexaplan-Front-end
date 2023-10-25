@@ -12,6 +12,7 @@ import ProjectList from "./pages/Collaborator/ProjectList";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Setting from "./pages/Setting/Setting";
 import Profile from "./pages/Profile/Profile";
+import TaskView from "./pages/Task/TaskView";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard/>}></Route>
             <Route path="/setting" element={<Setting />}></Route>
             <Route path="/profile" element={<Profile/>}></Route>
+            <Route path="/taskView" element={<TaskView/>}></Route>
             <Route element={<NotFound />}></Route>
           </Routes>
         </div>

@@ -3,11 +3,12 @@ import TaskCard from "./TaskCard";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import Layout from "../Layout";
-
+import { setId } from "../../reducers/actions";
 
 function TaskList() {
     
  const user=useSelector(state=>state.user.user)
+ const dispatch=useDispatch()
  const [tasks, setTasks] = useState([]);
 
  useEffect(() => {
@@ -19,9 +20,11 @@ function TaskList() {
      })
      .catch((error) => console.error("There was an error!", error));
  }, []);
-    const handleDelete=tasksId=>{
-        dispatch(removeTask(tasksId))
-    }
+    const handleClick = (id) => {
+      console.log(id);
+      dispatch(setId(id));
+      window.location.href="/taskView"
+    };
     
   return (
     <Layout>
@@ -33,7 +36,7 @@ function TaskList() {
         {tasks.length>0 ? (
           <ul id='task'>
             {tasks.map((task) => (
-              <TaskCard key={task.id} task={task} onDelete={handleDelete}/>
+              <TaskCard key={task.id} task={task} onView={handleClick}/>
             ))}
           </ul>
         ) : (

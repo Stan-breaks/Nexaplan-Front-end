@@ -10,9 +10,9 @@ import { persistStore, persistReducer } from "redux-persist";
 // Import your reducers here
 
 import userReducer from "./reducers/userReducer";
-
+import idReducer from "./reducers/idReducer"
 const rootReducer = combineReducers({
-
+  id:idReducer,
   user: userReducer,
   // Add more reducers as needed
 });

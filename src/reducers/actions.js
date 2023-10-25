@@ -6,3 +6,7 @@ export const setUser=user=>({
 export const clearUser=()=>({
    type:'CLEAR_USER', 
 })
+export const setId=id=>({
+    type:'SET_ID',
+    payload:id,
+})
