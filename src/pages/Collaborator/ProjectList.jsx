@@ -1,9 +1,19 @@
 import { useSelector } from "react-redux";
 import Layout from "../Layout";
+import { useEffect, useState } from "react";
 
 function ProjectList() {
-  const projects = useSelector((state) => state.projects);
-
+  const user=useSelector(state=>state.user.user)
+  const [projects,setProjects]=useState([])
+  useEffect(()=>{
+    fetch(`http://127.0.0.1:8000/projectList?user=${user}`)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        `http://127.0.0.1:8000/taskList?user=${user}`;
+      });
+  },[])
+console.log(user);
   return (
     <Layout>
       <div>
