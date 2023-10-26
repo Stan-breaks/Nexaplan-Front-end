@@ -24,7 +24,7 @@ function Home() {
           <Link to="/taskList">
             <button className="cta-button">View Tasks </button>
           </Link>
-          <Link to="/projects">
+          <Link to="/projectList">
             <button className="cta-button">
               View Projects 
             </button>

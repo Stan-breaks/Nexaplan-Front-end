@@ -121,22 +121,25 @@ body {
 }
 
 .projectItem {
-  margin-bottom: 2em;
+  margin: 10px 0;
 }
 
 .projectName {
-  font-size: 1.5em;
-  color: #333;
+  color: #8dd4f7;
 }
 
-.projectDescription {
-  font-size: 1.2em;
-  color: #666;
+.projectDetails {
+  color: #b3b8bc;
+}
+.projectContainer {
+   background-color: #3a3f4b;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
 }
 
-.collaborators {
-  font-size: 1em;
-  color: #999;
+.projectContainer:hover {
+  background-color: #282c34;
 }
 .task-container {
     background-color: #3a3f4b;

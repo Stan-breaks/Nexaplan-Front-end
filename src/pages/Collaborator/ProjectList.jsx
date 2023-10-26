@@ -10,7 +10,7 @@ function ProjectList() {
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
-        `http://127.0.0.1:8000/taskList?user=${user}`;
+        setProjects(response)
       });
   },[])
 console.log(user);
@@ -19,19 +19,20 @@ console.log(user);
       <div>
         <h1>Welcome to your Project List</h1>
         {projects.length > 0 ? (
-          <ul>
-            {projects.map((project, index) => (
-              <li key={index}>
-                <h4>{project.name}</h4>
-                <p>{project.description}</p>
-                <p>Collaborators: {project.collaborators.join(", ")}</p>
+          <ul className="projectList">
+            {projects.map((project) => (
+              <li key={project.id} className="projectContainer">
+                <h4 className="projectName">{project.projectName}</h4>
+                <p className="projectDetails">{project.projectDescription}</p>
               </li>
             ))}
           </ul>
         ) : (
           <p>No projects found.</p>
         )}
-        <button onClick={()=>window.location.href='/projectForm'}>+</button>
+        <button onClick={() => (window.location.href = "/projectForm")}>
+          Add project
+        </button>
       </div>
     </Layout>
   );

@@ -6,27 +6,18 @@ import { useEffect, useState } from "react";
 function Dashboard() {
   const [projects,setProjects] = useState([]);
   const [tasks,setTasks] = useState([])
+  const user=useSelector(state=>state.user.user)
 
   useEffect(()=>{
-     fetch("http://127.0.0.1:8000/taskList")
+     fetch(`http://127.0.0.1:8000/dashboard?user=${user}`)
        .then((response) => response.json())
        .then((data) => {
          console.log(data);
          setTasks(data);
        })
        .catch((error) => console.error("There was an error!", error));
-        fetch("http://127.0.0.1:8000/projectList")
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            setTasks(data);
-          })
-          .catch((error) => console.error("There was an error!", error));
-      },[])
-  const totalProjects = projects.length;
-  const totalTasks = tasks.length;
-  const completedTasks = tasks.filter((task) => task.completed).length;
-  const pendingTasks = totalTasks - completedTasks;
+       },[])
+  
 
   const collaborators = {};
   tasks.forEach((task) => {

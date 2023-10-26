@@ -3,22 +3,26 @@ import Layout from "../Layout";
 import { useState } from "react";
 
 function ProjectForm() {
-  const dispatch = useDispatch();
-  const projects = useSelector((state) => state.projects);
+  const user=useSelector(state=>state.user.user);
+ 
 
   const [projectName, setProjectName] = useState("");
   const [description, setDescription] = useState("");
-  const [collaborators, setCollaborators] = useState("");
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const project = {
       name: projectName,
       description,
-      collaborators: collaborators.split(",").map((item) => item.trim()), // assuming collaborators are comma separated
+      user,
     };
-    
-    // console.log(projects);
+    fetch(`http://127.0.0.1:8000/projectList?user=${user}`,{
+      method:'POST',
+      body:JSON.stringify(project)
+    })
+    .then(response=>response.json())
+    .then(response=>console.log(response));
     window.location.href="./projectList"
   };
 
