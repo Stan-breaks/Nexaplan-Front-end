@@ -204,6 +204,35 @@ button:hover {
     color: #ffffff;
 }
 
+.project {
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid #444;
+  background-color: #333;
+  color: #fff;
+}
+
+.project h2 {
+  color: #ddd;
+  font-size: 1.5em;
+}
+
+.project p {
+  color: #ccc;
+}
+
+.project ul {
+  list-style-type: none;
+}
+
+.project input {
+  border: none;
+  padding: 0.5em;
+}
+
+
+
+
 
 
 

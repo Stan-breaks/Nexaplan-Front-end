@@ -13,6 +13,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Setting from "./pages/Setting/Setting";
 import Profile from "./pages/Profile/Profile";
 import TaskView from "./pages/Task/TaskView";
+import ProjectPage from "./pages/Collaborator/ProjectPage";
+import SearchPage from "./pages/SearchPage";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -28,10 +30,12 @@ function App() {
             <Route path="/taskForm" element={<TaskForm />}></Route>
             <Route path="/projectList" element={<ProjectList />}></Route>
             <Route path="/projectForm" element={<ProjectForm />}></Route>
-            <Route path="/dashboard" element={<Dashboard/>}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/setting" element={<Setting />}></Route>
-            <Route path="/profile" element={<Profile/>}></Route>
-            <Route path="/taskView" element={<TaskView/>}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/taskView" element={<TaskView />}></Route>
+            <Route path="/projectView" element={<ProjectPage/>}></Route>
+            <Route path="/searchPage" element={<SearchPage />}></Route>
             <Route element={<NotFound />}></Route>
           </Routes>
         </div>

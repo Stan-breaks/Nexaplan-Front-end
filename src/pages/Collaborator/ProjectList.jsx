@@ -1,10 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Layout from "../Layout";
 import { useEffect, useState } from "react";
+import { setId } from "../../reducers/actions";
 
 function ProjectList() {
   const user=useSelector(state=>state.user.user)
   const [projects,setProjects]=useState([])
+  const dispatch=useDispatch();
+  
+  const handelClick=(id)=>{
+    console.log(id);
+    dispatch(setId(id))
+    window.location.href='projectView';
+  }
+
   useEffect(()=>{
     fetch(`http://127.0.0.1:8000/projectList?user=${user}`)
       .then((response) => response.json())
@@ -13,7 +22,7 @@ function ProjectList() {
         setProjects(response)
       });
   },[])
-console.log(user);
+   console.log(user);
   return (
     <Layout>
       <div>
@@ -21,7 +30,9 @@ console.log(user);
         {projects.length > 0 ? (
           <ul className="projectList">
             {projects.map((project) => (
-              <li key={project.id} className="projectContainer">
+              <li key={project.id} className="projectContainer"
+              onClick={()=>handelClick(project.id)}
+              >
                 <h4 className="projectName">{project.projectName}</h4>
                 <p className="projectDetails">{project.projectDescription}</p>
               </li>
