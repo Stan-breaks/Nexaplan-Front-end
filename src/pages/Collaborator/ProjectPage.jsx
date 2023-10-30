@@ -3,10 +3,11 @@ import Layout from "../Layout";
 import { useSelector } from "react-redux";
 
 function ProjectPage() {
-  const [project,setProject]=useState({})
+  const [project,setProject]=useState({});
   const [newTask, setNewTask] = useState("");
   const [newCollaborator, setNewCollaborator] = useState("");
-  const id=useSelector(state=>state.id.id)
+  const[people,setPeople]=useState([])
+  const id=useSelector(state=>state.id.id);
 
     
   const handleAddTask = () => {
@@ -23,7 +24,13 @@ function ProjectPage() {
         console.log(response)
         setProject(response)
     })
+    fetch('http://127.0.0.1:8000/usersList')
+    .then(response=>response.json())
+    .then(response=>{
+      setPeople(response)
+    })
   },[])
+  console.log(people);
   return (
     <Layout>
       <div className="project">
@@ -44,14 +51,21 @@ function ProjectPage() {
         <button onClick={handleAddTask}>Add Task</button>
         <p>Status: {project.projectStatus ? "Active" : "Inactive"}</p>
         <p>
-          Collaborators: {project.collaborators&&project.collaborators.join(", ")}
+          Collaborators:
+          {project.collaborators && project.collaborators.join(", ")}
         </p>
-        <input
-          type="text"
-          value={newCollaborator}
-          onChange={(e) => setNewCollaborator(e.target.value)}
-          placeholder="New collaborator"
-        />
+        {people && (
+          <select
+            value={newCollaborator}
+            onChange={(e) => setNewCollaborator(e.target.value)}
+          >
+            {people.map((collaborator, index) => (
+              <option key={index} value={collaborator}>
+                {collaborator}
+              </option>
+            ))}
+          </select>
+        )}
         <button onClick={handleAddCollaborator}>Add Collaborator</button>
       </div>
     </Layout>

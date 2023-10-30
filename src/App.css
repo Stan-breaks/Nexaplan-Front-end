@@ -229,7 +229,9 @@ button:hover {
   border: none;
   padding: 0.5em;
 }
-
+select{
+  padding: 0.5em;
+}
 
 
 
