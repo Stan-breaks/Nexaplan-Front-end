@@ -8,16 +8,14 @@ function ProjectPage() {
   const [newCollaborator, setNewCollaborator] = useState("");
   const id=useSelector(state=>state.id.id)
 
+    
   const handleAddTask = () => {
     setNewTask("");
   };
 
   const handleAddCollaborator = () => {
-    
     setNewCollaborator("");
   };
-
-
   useEffect(()=>{
     fetch(`http://127.0.0.1:8000/projectView/${id}`)
     .then(response=>response.json())
@@ -32,9 +30,10 @@ function ProjectPage() {
         <h2>{project.projectName}</h2>
         <p>{project.projectDescription}</p>
         <ul>
-          {project.projectTask.map((task, index) => (
-            <li key={index}>{task}</li>
-          ))}
+          {project.projectTask &&
+            project.projectTask.map((task, index) => (
+              <li key={index}>{task}</li>
+            ))}
         </ul>
         <input
           type="text"
@@ -44,7 +43,9 @@ function ProjectPage() {
         />
         <button onClick={handleAddTask}>Add Task</button>
         <p>Status: {project.projectStatus ? "Active" : "Inactive"}</p>
-        <p>Collaborators: {project.collaborators.join(", ")}</p>
+        <p>
+          Collaborators: {project.collaborators&&project.collaborators.join(", ")}
+        </p>
         <input
           type="text"
           value={newCollaborator}
