@@ -4,16 +4,19 @@ import { useSelector } from "react-redux";
 
 function ProjectPage() {
   const [project,setProject]=useState({});
-  const [newTask, setNewTask] = useState("");
+  const [newTask,setNewTask]=useState({name:"",description:"",dueDate:"",priority:"",assigned:""})
   const [newCollaborator, setNewCollaborator] = useState("");
   const[people,setPeople]=useState([])
   const id=useSelector(state=>state.id.id);
 
     
   const handleAddTask = () => {
-    setNewTask("");
+    document.querySelector(".addTask").style.display='block';
+    console.log('stan');
   };
+  const handleSubmit=()=>{
 
+  }
   const handleAddCollaborator = () => {
     setNewCollaborator("");
   };
@@ -21,7 +24,7 @@ function ProjectPage() {
     fetch(`http://127.0.0.1:8000/projectView/${id}`)
     .then(response=>response.json())
     .then(response=>{
-        console.log(response)
+        
         setProject(response)
     })
     fetch('http://127.0.0.1:8000/usersList')
@@ -30,7 +33,7 @@ function ProjectPage() {
       setPeople(response)
     })
   },[])
-  console.log(people);
+ 
   return (
     <Layout>
       <div className="project">
@@ -42,17 +45,71 @@ function ProjectPage() {
               <li key={index}>{task}</li>
             ))}
         </ul>
-        <input
-          type="text"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-          placeholder="New task"
-        />
-        <button onClick={handleAddTask}>Add Task</button>
+        <div className="projectTask">
+          <br/>
+          <label htmlFor="text1" className="form-label">
+            Task name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="text1"
+            value={newTask.name}
+            onChange={(e) => setNewTask({...newTask,name:e.target.value})}
+            required
+          />
+        
+        <div className="mb-3">
+          <label htmlFor="description" className="form-label">
+            Description
+          </label>
+          <textarea
+            className="form-control"
+            id="description"
+            value={newTask.description}
+            onChange={(e) => setNewTask({...newTask,description:e.target.value})}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="dueDate" className="form-label">
+            Due Date
+          </label>
+          <input
+            type="date"
+            className="form-control"
+            id="dueDate"
+            value={newTask.dueDate}
+            onChange={(e) => setNewTask({...newTask,dueDate:e.target.value})}
+            required
+          />
+        </div>
+        <div className="mb-3 form-check">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id="exampleCheck1"
+            checked={newTask.priority}
+            onChange={(e) => setNewTask({...newTask,priority:e.target.checked})}
+          />
+          <label className="form-check-label" htmlFor="exampleCheck1">
+            prioritize
+          </label>
+          <br/>
+          </div>
+          <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
+        </div>
+        <button onClick={handleAddTask} className="addTask">Add Task</button>
         <p>Status: {project.projectStatus ? "Active" : "Inactive"}</p>
         <p>
           Collaborators:
-          {project.collaborators && project.collaborators.join(", ")}
+          {project.collaborators<0? project.collaborators.join(", "):"0"}
         </p>
         {people && (
           <select

@@ -232,7 +232,9 @@ button:hover {
 select{
   padding: 0.5em;
 }
-
+.projectTask{
+  display: none;  
+}
 
 
 
