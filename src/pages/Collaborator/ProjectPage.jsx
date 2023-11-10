@@ -10,12 +10,9 @@ function ProjectPage() {
   const id=useSelector(state=>state.id.id);
   const[taskForm,setTaskForm]=useState(false)
     
-  const handleAddTask = () => {
-    setTaskForm(true)
-  };
   const handleSubmit=()=>{
     const data={...newTask}
-    fetch(`http://127.0.0.1:8000/projectTasks`,{
+    fetch(`http://127.0.0.1:8000/projectTasks/${id}`,{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
@@ -24,11 +21,30 @@ function ProjectPage() {
     })
     .then(response=>response.json())
     .then(response=>{ console.log(response)})
-    setTaskForm(false)
+     setTimeout(() => {
+       alert("Task Added");
+       setTaskForm(false);
+       location.reload();
+     }, 1000);
+  
   }
+
   const handleAddCollaborator = () => {
-    setNewCollaborator("");
+    const data = { collaborator: newCollaborator,};
+    fetch(`http://127.0.0.1:8000/projectCollaborators/${id}`,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(data)
+    })
+    setTimeout(() => {
+      alert("Collaborator Added");
+      location.reload()
+    }, 1000);
+    
   };
+
   useEffect(()=>{
     fetch(`http://127.0.0.1:8000/projectView/${id}`)
     .then(response=>response.json())
@@ -36,7 +52,7 @@ function ProjectPage() {
         
         setProject(response)
     })
-    fetch('http://127.0.0.1:8000/usersList')
+    fetch(`http://127.0.0.1:8000/usersList/${id}`)
     .then(response=>response.json())
     .then(response=>{
       setPeople(response)
@@ -84,13 +100,26 @@ function ProjectPage() {
               />
             </div>
 
-           <div className="mb-3">
+            <div className="mb-3">
               <label htmlFor="assignedTo" className="form-label">
                 Assigned To
               </label>
-              <select className="form-select" aria-label="Default select example" id="assignedTo" value={newTask.assignedTo} onChange={(e)=>setNewTask({...newTask,assignedTo:e.target.value})}>
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                id="assignedTo"
+                value={newTask.assignedTo}
+                onChange={(e) =>
+                  setNewTask({ ...newTask, assignedTo: e.target.value })
+                }
+              >
                 <option selected>Open this select menu</option>
-                {project.collaborators && project.collaborators.map((collaborator,index)=><option key={index} value={collaborator}>{collaborator}</option>)}
+                {project.collaborators &&
+                  project.collaborators.map((collaborator, index) => (
+                    <option key={index} value={collaborator}>
+                      {collaborator}
+                    </option>
+                  ))}
               </select>
             </div>
 
@@ -134,9 +163,11 @@ function ProjectPage() {
           </div>
         )}
 
-        <button onClick={handleAddTask} className="addTask">
-          Add Task
-        </button>
+        {taskForm ? (
+          <button onClick={() => setTaskForm(false)}>Cancel</button>
+        ) : (
+          <button onClick={() => setTaskForm(true)}>Add Task</button>
+        )}
         <p>Status: {project.projectStatus ? "Active" : "Inactive"}</p>
         <p>
           Collaborators:
@@ -147,6 +178,7 @@ function ProjectPage() {
             value={newCollaborator}
             onChange={(e) => setNewCollaborator(e.target.value)}
           >
+            <option selected>Open this select menu</option>
             {people.map((collaborator, index) => (
               <option key={index} value={collaborator}>
                 {collaborator}
