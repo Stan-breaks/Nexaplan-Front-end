@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 function ProjectPage() {
   const [project,setProject]=useState({});
-  const [newTask,setNewTask]=useState({name:"",description:"",dueDate:"",priority:"",assignedTo:""})
+  const [newTask,setNewTask]=useState({name:"",description:"",dueDate:"",priority:"",assignedTo:"",label:"project"})
   const [newCollaborator, setNewCollaborator] = useState("");
   const [people, setPeople] = useState([]);
   const id=useSelector(state=>state.id.id);

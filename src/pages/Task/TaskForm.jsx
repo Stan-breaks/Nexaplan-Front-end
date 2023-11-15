@@ -10,7 +10,7 @@ function TaskForm() {
     taskName:"",
     isPriority:false,
     taskDescription:"",
-    label:"",
+    category:"",
     done:false,
     user:user.user
   })
@@ -87,8 +87,8 @@ function TaskForm() {
            type="text"
            className="form-control"
            id="label"
-           value={task.label}
-           onChange={(e)=>setTask({...task,label:e.target.value})}
+           value={task.category}
+           onChange={(e)=>setTask({...task,category:e.target.value})}
            />
         </div>
         <div className="mb-3 form-check">

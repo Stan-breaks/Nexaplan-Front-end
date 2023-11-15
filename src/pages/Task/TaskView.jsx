@@ -44,6 +44,7 @@ function TaskView() {
           <div className="task-container">
             <h2 className="task-title">{task.taskName}</h2>
             <p className="task-detail">Description: {task.taskDescription}</p>
+            <p className="task-detail">Category: {task.category}</p>
             <p className="task-detail">Due date: {task.dueDate}</p>
             <p className="task-detail">Time: {task.timestamp}</p>
             <p className="task-detail">

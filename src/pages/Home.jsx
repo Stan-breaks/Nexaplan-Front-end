@@ -9,32 +9,28 @@ function Home() {
   const user=useSelector(state=>state.user.user)
   console.log(user)
   return (
-   
-      <Layout>
-         <div className="homepage">
+    <Layout>
+      <div className="homepage">
         <div className="welcome-section">
-          <h1>Welcome to NexaPlan!</h1>
+          <h1>
+            {user.charAt(0).toUpperCase() + user.slice(1)}, Welcome to NexaPlan!
+          </h1>
           <p>Your Ultimate Task and Project Management Solution</p>
           <div className="illustration-section">
             {/* Add welcoming illustrations or graphics here */}
             <img src="welcome.png" alt="Welcome Illustration" />
           </div>
-          <br/>
-          
+          <br />
+
           <Link to="/taskList">
             <button className="cta-button">View Tasks </button>
           </Link>
           <Link to="/projectList">
-            <button className="cta-button">
-              View Projects 
-            </button>
+            <button className="cta-button">View Projects</button>
           </Link>
-          
         </div>
-        
-        </div>
-      </Layout>
-    
+      </div>
+    </Layout>
   );
 }
 export default Home
