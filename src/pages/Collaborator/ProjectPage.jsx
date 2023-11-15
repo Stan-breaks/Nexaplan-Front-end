@@ -58,7 +58,7 @@ function ProjectPage() {
       setPeople(response)
     })
   },[])
- 
+  // console.log(project.collaborators);
   return (
     <Layout>
       <div className="project">
@@ -170,9 +170,10 @@ function ProjectPage() {
         )}
         <p>Status: {project.projectStatus ? "Active" : "Inactive"}</p>
         <p>
-          Collaborators:
-          {project.collaborators < 0 ? project.collaborators.join(", ") : "0"}
+          Collaborators: 
+          {project.collaborators ? project.collaborators.join(", ") : "0"}
         </p>
+       
         {people && (
           <select
             value={newCollaborator}

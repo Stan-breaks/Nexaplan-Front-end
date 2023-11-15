@@ -38,6 +38,9 @@ function Login() {
            dispatch(setUser(response.user));
            window.location.href='/home'
           }
+          else{
+            document.querySelector(".error").style.display = "block";
+          }
         });
       
     }

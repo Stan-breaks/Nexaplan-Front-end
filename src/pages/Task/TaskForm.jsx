@@ -6,10 +6,15 @@ import { useState } from "react";
 function TaskForm() {
   const user=useSelector((state)=>state.user)
 
-  const [taskName, setTaskName] = useState('');
-  const [isPrioritized, setIsPrioritized] = useState(false);
-  const [dueDate, setDueDate] = useState("");
-  const [description, setDescription] = useState(""); // Add this line
+  const[task,setTask]=useState({
+    taskName:"",
+    isPriority:false,
+    taskDescription:"",
+    label:"",
+    done:false,
+    user:user.user
+  })
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,15 +22,6 @@ function TaskForm() {
       window.location.href='/'
     }
     else{
-      const task = {
-        taskName,
-        dueDate,
-        isPriority: isPrioritized,
-        taskDescription: description, // Add this line
-        done: false,
-        user:user.user,
-      };
-
       fetch("http://127.0.0.1:8000/taskList", {
         method: "POST",
         body: JSON.stringify(task),
@@ -53,8 +49,8 @@ function TaskForm() {
             type="text"
             className="form-control"
             id="text1"
-            value={taskName}
-            onChange={(e) => setTaskName(e.target.value)}
+            value={task.taskName}
+            onChange={(e) => setTask({...task,taskName:e.target.value})}
             required
           />
         </div>
@@ -65,8 +61,8 @@ function TaskForm() {
           <textarea
             className="form-control"
             id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={task.taskDescription}
+            onChange={(e) => setTask({...task,taskDescription:e.target.value})}
             required
           />
           </div>
@@ -78,18 +74,30 @@ function TaskForm() {
             type="date"
             className="form-control"
             id="dueDate"
-            value={dueDate}
-            onChange={(e) => setDueDate(e.target.value)}
+            value={task.dueDate}
+            onChange={(e) => setTask({...task,dueDate:e.target.value})}
             required
           />
+        </div>
+        <div className="mb-3 ">
+           <label className="form-label" htmlFor="label">
+            Category of Label : 
+           </label>
+           <input
+           type="text"
+           className="form-control"
+           id="label"
+           value={task.label}
+           onChange={(e)=>setTask({...task,label:e.target.value})}
+           />
         </div>
         <div className="mb-3 form-check">
           <input
             type="checkbox"
             className="form-check-input"
             id="exampleCheck1"
-            checked={isPrioritized}
-            onChange={(e) => setIsPrioritized(e.target.checked)}
+            checked={task.isPriority}
+            onChange={(e) => setTask({...task,isPriority:e.target.checked})}
           />
           <label className="form-check-label" htmlFor="exampleCheck1">
             prioritize
