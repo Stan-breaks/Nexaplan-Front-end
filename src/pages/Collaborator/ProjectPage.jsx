@@ -4,14 +4,14 @@ import { useSelector } from "react-redux";
 
 function ProjectPage() {
   const [project,setProject]=useState({});
-  const [newTask,setNewTask]=useState({name:"",description:"",dueDate:"",priority:"",assignedTo:"",label:"project"})
+  const [newTask,setNewTask]=useState({name:"",description:"",dueDate:"",priority:"",assignedTo:"",category:""})
   const [newCollaborator, setNewCollaborator] = useState("");
   const [people, setPeople] = useState([]);
   const id=useSelector(state=>state.id.id);
   const[taskForm,setTaskForm]=useState(false)
     
   const handleSubmit=()=>{
-    const data={...newTask}
+    const data={...newTask,category:project.projectName}
     fetch(`http://127.0.0.1:8000/projectTasks/${id}`,{
       method:"POST",
       headers:{
@@ -58,16 +58,24 @@ function ProjectPage() {
       setPeople(response)
     })
   },[])
-  // console.log(project.collaborators);
+
   return (
     <Layout>
       <div className="project">
         <h2>{project.projectName}</h2>
         <p>{project.projectDescription}</p>
         <ul>
+          <h2>Project tasks</h2>
+          {!project.projectTask&&
+          <p>No tasks here</p>
+          }
           {project.projectTask &&
             project.projectTask.map((task, index) => (
-              <li key={index}>{task}</li>
+              <>
+                <li key={index} className="category">
+                  {task}
+                </li>
+              </>
             ))}
         </ul>
         {taskForm && (
@@ -170,10 +178,10 @@ function ProjectPage() {
         )}
         <p>Status: {project.projectStatus ? "Active" : "Inactive"}</p>
         <p>
-          Collaborators: 
+          Collaborators:
           {project.collaborators ? project.collaborators.join(", ") : "0"}
         </p>
-       
+
         {people && (
           <select
             value={newCollaborator}

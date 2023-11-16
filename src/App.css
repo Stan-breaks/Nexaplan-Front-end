@@ -232,8 +232,32 @@ button:hover {
 select{
   padding: 0.5em;
 }
+.labelCategory {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #383838;
+}
 
+.labelCategory h2 {
+    color: #F9A825;
+}
 
+.labelCategory ul {
+    list-style-type: none;
+    padding: 0;
+}
+ .category {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #505050;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.category:hover {
+    background-color: #606060;
+}
 
 
 

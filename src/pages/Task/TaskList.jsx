@@ -60,7 +60,28 @@ function TaskList() {
      setShowAll(true)
      setShowLabel(false)
      setShowProject(false)
+
+     fetch(`http://127.0.0.1:8000/taskList?user=${user}`)
+       .then((response) => response.json())
+       .then((data) => {
+         console.log(data);
+         setTasks(data);
+       })
+       .catch((error) => console.error("There was an error!", error));
     }
+    const handleCategoryClick = (category) => {
+      
+      fetch(`http://127.0.0.1:8000/taskCategories?user=${user}&category=${category}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setTasks(data);
+          setShowAll(true)
+          setShowLabel(false)
+          setShowProject(false)
+        })
+        .catch((error) => console.error("There was an error!", error));
+    };
     
   return (
     <Layout>
@@ -79,8 +100,11 @@ function TaskList() {
                 <ul>
                   {categories.map((category) => {
                     return (
-                      <li key={category}>
-                        <a href="#">{category}</a>
+                      <li key={category}
+                      onClick={()=>handleCategoryClick(category)}
+                      className="category"
+                      >
+                        {category}
                       </li>
                     );
                   })}
@@ -95,15 +119,19 @@ function TaskList() {
             <></>
           )}
           {showProject ? (
-            <div className="projectCategory">
+            <div className="labelCategory">
               <br></br>
               <h2>Your Task Project List</h2>
               {projectCategories.length > 0 ? (
                 <ul>
                   {projectCategories.map((category) => {
                     return (
-                      <li key={category}>
-                        <a href="#">{category}</a>
+                      <li
+                        key={category}
+                        onClick={() => handleCategoryClick(category)}
+                        className="category"
+                      >
+                        {category}
                       </li>
                     );
                   })}
