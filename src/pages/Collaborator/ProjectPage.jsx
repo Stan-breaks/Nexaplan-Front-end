@@ -66,7 +66,7 @@ function ProjectPage() {
         <p>{project.projectDescription}</p>
         <ul>
           <h2>Project tasks</h2>
-          {!project.projectTask&&
+          {project.projectTask==0&&
           <p>No tasks here</p>
           }
           {project.projectTask &&
