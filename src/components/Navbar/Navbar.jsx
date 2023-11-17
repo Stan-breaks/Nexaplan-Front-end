@@ -1,17 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.css"
-import { clearUser } from "../../reducers/actions";
+import { clearUser,setSearch } from "../../reducers/actions";
+import { useState } from "react";
 
 function Navbar() {
   
   //getting the state and action from the redux store
  const user=useSelector(state=>state.user);
  const dispatch=useDispatch();
-
+ const [search,setSearch]=useState("")
  const logoutClick=()=>{
   //logout implementation
   dispatch(clearUser());
   window.location.href='/';
+ }
+ const handleSubmit=(e)=>{
+  e.preventDefault();
+  dispatch(setSearch(search));
+  window.location.href = "/searchPage";
  }
   return (
     <nav
@@ -51,8 +57,12 @@ function Navbar() {
               type="search"
               placeholder="Search"
               aria-label="Search"
+              value={search}
+              onChange={(e)=>setSearch(e.target.value)}
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-outline-success" type="submit"
+            onClick={(e)=>handleSubmit(e)}
+            >
               Search
             </button>
           </form>

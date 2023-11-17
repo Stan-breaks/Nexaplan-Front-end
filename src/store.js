@@ -11,9 +11,11 @@ import { persistStore, persistReducer } from "redux-persist";
 
 import userReducer from "./reducers/userReducer";
 import idReducer from "./reducers/idReducer"
+import searchReducer from "./reducers/searchReducer";
 const rootReducer = combineReducers({
   id:idReducer,
   user: userReducer,
+  search:searchReducer,
   // Add more reducers as needed
 });
 

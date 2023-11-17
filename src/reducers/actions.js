@@ -10,3 +10,7 @@ export const setId=id=>({
     type:'SET_ID',
     payload:id,
 })
+export const setSearch=search=>({
+    type:'SET_SEARCH',
+    payload:search,
+})

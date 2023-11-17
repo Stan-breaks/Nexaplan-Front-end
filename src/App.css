@@ -246,17 +246,35 @@ select{
     list-style-type: none;
     padding: 0;
 }
- .category {
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 3px;
-    background-color: #505050;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
+.category {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #505050;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
-
 .category:hover {
     background-color: #606060;
+}
+.search-page {
+  background-color: #121212;
+  color: #FFFFFF;
+}
+
+.title {
+  color: #BB86FC;
+}
+
+.result-item {
+  background-color: #1F1B24;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.result-item p {
+  color: #BB86FC;
 }
 
 

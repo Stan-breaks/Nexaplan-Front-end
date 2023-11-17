@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Setting.css";
 import Layout from "../Layout";
 
 function Setting() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
+  const [userInfo,setUserInfo]=useState({name:"",email:"",});
   const handleSave = () => {
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
@@ -18,8 +14,15 @@ function Setting() {
     const updateUserSettings = (username, email, password) => {
       console.log(`Updated settings: ${username}, ${email}, ${password}`);
     };
-
+  
     updateUserSettings(username, email, password);
+   useEffect(()=>{
+    fetch('settings')
+    .then(response=>response.json())
+    .then(data=>{
+
+    })
+   },[])
   };
 
   return (

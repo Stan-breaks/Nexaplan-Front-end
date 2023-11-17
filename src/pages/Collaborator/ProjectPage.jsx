@@ -28,7 +28,19 @@ function ProjectPage() {
      }, 1000);
   
   }
-
+  const handleProjectClick=()=>{
+    fetch(`http://127.0.0.1:8000/projectHandling/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body:JSON.stringify({"message":"delete"})
+    });
+    setTimeout(()=>{
+      alert("Project Status Flipped")
+      location.reload();
+    },1000)
+  }
   const handleAddCollaborator = () => {
     const data = { collaborator: newCollaborator,};
     fetch(`http://127.0.0.1:8000/projectCollaborators/${id}`,{
@@ -58,7 +70,7 @@ function ProjectPage() {
       setPeople(response)
     })
   },[])
-
+  console.log(project);
   return (
     <Layout>
       <div className="project">
@@ -66,9 +78,7 @@ function ProjectPage() {
         <p>{project.projectDescription}</p>
         <ul>
           <h2>Project tasks</h2>
-          {project.projectTask==0&&
-          <p>No tasks here</p>
-          }
+          {project.projectTask == 0 && <p>No tasks here</p>}
           {project.projectTask &&
             project.projectTask.map((task, index) => (
               <>
@@ -196,6 +206,13 @@ function ProjectPage() {
           </select>
         )}
         <button onClick={handleAddCollaborator}>Add Collaborator</button>
+        <br />
+        <button onClick={handleProjectClick}
+        style={{backgroundColor:project.projectStatus?'Red':''}}  
+      
+        >
+          {project.projectStatus ? <>Terminate</> : <>Activate</>}
+        </button>
       </div>
     </Layout>
   );
