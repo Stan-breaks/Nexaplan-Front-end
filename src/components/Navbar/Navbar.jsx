@@ -8,7 +8,7 @@ function Navbar() {
   //getting the state and action from the redux store
  const user=useSelector(state=>state.user);
  const dispatch=useDispatch();
- const [search,setSearch]=useState("")
+ const [searchText,setSearchText]=useState("")
  const logoutClick=()=>{
   //logout implementation
   dispatch(clearUser());
@@ -16,9 +16,10 @@ function Navbar() {
  }
  const handleSubmit=(e)=>{
   e.preventDefault();
-  dispatch(setSearch(search));
+  dispatch(setSearch(searchText));
   window.location.href = "/searchPage";
  }
+
   return (
     <nav
       className="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary"
@@ -51,17 +52,16 @@ function Navbar() {
               Projects
             </a>
           </div>
-          <form className="d-flex" role="search">
+          <form className="d-flex" role="search" onSubmit={(e)=>handleSubmit(e)}>
             <input
               className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
-              value={search}
-              onChange={(e)=>setSearch(e.target.value)}
+              value={searchText}
+              onChange={(e)=>setSearchText(e.target.value)}
             />
             <button className="btn btn-outline-success" type="submit"
-            onClick={(e)=>handleSubmit(e)}
             >
               Search
             </button>

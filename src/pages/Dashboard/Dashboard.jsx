@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 function Dashboard() {
   const [data,setData]=useState({})
   const user=useSelector(state=>state.user.user)
-
+  const [value, onChange] = useState(new Date());
   useEffect(()=>{
      fetch(`http://127.0.0.1:8000/dashboard?user=${user}`)
        .then((response) => response.json())
@@ -30,7 +30,8 @@ function Dashboard() {
   return (
     <Layout>
       <h3>Dashboard</h3>
-      <div>
+      <div className="dashboardDetails">
+        <div>
         <h4>Project Overview</h4>
         <p>Total Projects: {data.totalProjects}</p>
         <p>Active Projects: {data.activeProjects}</p>
@@ -40,7 +41,12 @@ function Dashboard() {
         <p>Total Tasks: {data.totalTasks}</p>
         <p>Completed Tasks: {data.completedTasks}</p>
         <p>Pending Tasks: {data.pendingTasks}</p>
+        <p>Priority Tasks: {data.priorityTasks}</p>
+        <p>upcoming Deadlines: {data.upcomingDeadlines}</p>
       </div>
+      </div>
+      
+      
       {/* <div>
         <h4>Collaborator Overview</h4>
         {Object.entries(collaborators).map(([collaborator, taskCount]) => (

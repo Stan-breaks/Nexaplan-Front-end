@@ -6,7 +6,6 @@ import Loader from "../../components/Loader/Loader";
 function TaskView() {
     const [task,setTask]=useState({});
     const taskId=useSelector(state=>state.id.id);
-
     const handleComplete=()=>{
     fetch(`http://127.0.0.1:8000/completeTask/${taskId}`,
     {

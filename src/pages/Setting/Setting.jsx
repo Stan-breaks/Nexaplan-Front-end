@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from "react";
 import "./Setting.css";
 import Layout from "../Layout";
+import { useSelector } from "react-redux";
+import { json } from "react-router-dom";
 
 function Setting() {
-  const [userInfo,setUserInfo]=useState({name:"",email:"",});
+  const user=useSelector(state=>state.user.user)
+  const [userInfo,setUserInfo]=useState({username:"",email:"",password:"",confirmPassword:""});
   const handleSave = () => {
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-
-    // Mock function to simulate updating user settings on a server
-    const updateUserSettings = (username, email, password) => {
-      console.log(`Updated settings: ${username}, ${email}, ${password}`);
-    };
   
-    updateUserSettings(username, email, password);
+      if (userInfo.password !== userInfo.confirmPassword) {
+        alert("Passwords do not match!");
+      } else {
+        fetch(`http://127.0.0.1:8000/settings?user=${user}`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            alert("Changes saved successfully!");
+          });
+      }
+  };
    useEffect(()=>{
-    fetch('settings')
+    fetch(`http://127.0.0.1:8000/settings?user=${user}`)
     .then(response=>response.json())
     .then(data=>{
-
+        setUserInfo({...userInfo,...data})
+        console.log(data)
     })
    },[])
-  };
-
+  
+ console.log(userInfo);
   return (
     <Layout>
       <div className="settings">
@@ -34,32 +45,32 @@ function Setting() {
             Username:
             <input
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={userInfo.username}
+              onChange={(e) => setUserInfo({...userInfo,username:e.target.value})}
             />
           </label>
           <label>
             Email:
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={userInfo.email}
+              onChange={(e) => setUserInfo({...userInfo,email:e.target.value})}
             />
           </label>
           <label>
             Password:
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={userInfo.password}
+              onChange={(e) => setUserInfo({...userInfo,password:e.target.value})}
             />
           </label>
           <label>
             Confirm Password:
             <input
               type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={userInfo.confirmPassword}
+              onChange={(e) => setUserInfo({...userInfo,confirmPassword:e.target.value})}
             />
           </label>
           <button type="button" onClick={handleSave}>
