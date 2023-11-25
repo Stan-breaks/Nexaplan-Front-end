@@ -7,7 +7,7 @@ import Login from "./pages/Authentication/Login";
 import Registration from "./pages/Authentication/Registration";
 import TaskForm from "./pages/Task/TaskForm";
 import TaskList from "./pages/Task/TaskList";
-import ProjectForm from "./pages/Collaborator/projectForm";
+import ProjectForm from "./pages/Collaborator/ProjectForm";
 import ProjectList from "./pages/Collaborator/ProjectList";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Setting from "./pages/Setting/Setting";
