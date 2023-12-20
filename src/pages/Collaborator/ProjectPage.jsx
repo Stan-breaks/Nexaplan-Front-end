@@ -8,8 +8,9 @@ function ProjectPage() {
   const [newCollaborator, setNewCollaborator] = useState("");
   const [people, setPeople] = useState([]);
   const id=useSelector(state=>state.id.id);
-  const[taskForm,setTaskForm]=useState(false)
-    
+  const[taskForm,setTaskForm]=useState(false);
+  const[comment,setComment]= useState(false); 
+  const[comments,setComments]=useState({})
   const handleSubmit=()=>{
     const data={...newTask,category:project.projectName}
     fetch(`http://127.0.0.1:8000/projectTasks/${id}`,{
@@ -69,10 +70,31 @@ function ProjectPage() {
     .then(response=>{
       setPeople(response)
     })
+    fetch(`http://127.0.0.1:8000/comment${id}`)
+    .then(response=>response.json())
+    .then(response=>{
+        setComments(response)
+      })
   },[])
   console.log(project);
   return (
     <Layout>
+      {comment?
+      <>
+      <button onClick={()=>setComment(false)}>Project</button>
+      <div className="Comments">
+      <h3>Comments</h3>
+      {comments && comments.map((data)=>{
+            return <>
+                <p>
+              
+               </p></>
+            })}
+      </div>
+      </>
+      :
+      <>
+      <button onClick={()=>setComment(true)}>Comments</button>
       <div className="project">
         <h2>{project.projectName}</h2>
         <p>{project.projectDescription}</p>
@@ -214,7 +236,9 @@ function ProjectPage() {
           {project.projectStatus ? <>Terminate</> : <>Activate</>}
         </button>
       </div>
-    </Layout>
+      </>
+}
+          </Layout>
   );
 }
 
