@@ -13,8 +13,7 @@ Nexaplan is a project and task management system frontend implemented using Reac
 Before you start, make sure you have a recent version of Node.js installed.
 
 ```bash
-git clone https://github.com/yourusername/nexaplan.git
-cd nexaplan
+git clone https://github.com/Stan-breaks/Nexaplan-Front-end.git
 npm install
 ```
 
