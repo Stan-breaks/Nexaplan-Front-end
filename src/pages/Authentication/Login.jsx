@@ -1,55 +1,49 @@
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import "./Authentication.css"
+import "./Authentication.css";
 import { setUser } from "../../reducers/actions";
 function Login() {
-  const user=useSelector(state=>state.user);
-  const dispatch=useDispatch();
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const validateEmail = (email) => {
-  return email.match(
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  );
-};
-  const handleClick=(e)=>{
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    );
+  };
+  const handleClick = (e) => {
     e.preventDefault();
-    const email=document.getElementById("exampleInputEmail1").value;
-    const password=document.getElementById("exampleInputPassword1").value;
-    if (
-      password == ""||!validateEmail(email)
-    ) {
+    const email = document.getElementById("exampleInputEmail1").value;
+    const password = document.getElementById("exampleInputPassword1").value;
+    if (password == "" || !validateEmail(email)) {
       document.querySelector(".error").style.display = "block";
     } else {
-
       //assign the user after fetching from the server
-      const user={
-        email:email,
-        password:password,
-      }
+      const user = {
+        email: email,
+        password: password,
+      };
       console.log(user);
-      fetch("http://127.0.0.1:8000/login",{
-        method:'POST',
-        body:JSON.stringify(user),
+      fetch("https://nexaplanbackend.onrender.com/login", {
+        method: "POST",
+        body: JSON.stringify(user),
       })
         .then((response) => response.json())
         .then((response) => {
           console.log(response.message);
-          if (response.message==='login success'){
-           dispatch(setUser(response.user));
-           window.location.href='/home'
-          }
-          else{
+          if (response.message === "login success") {
+            dispatch(setUser(response.user));
+            window.location.href = "/home";
+          } else {
             document.querySelector(".error").style.display = "block";
           }
         });
-      
     }
-      
-  }
-  const registerClick=(e)=>{
-   e.preventDefault()
-   window.location.href="/register";
-  }
+  };
+  const registerClick = (e) => {
+    e.preventDefault();
+    window.location.href = "/register";
+  };
   return (
     <>
       <h1>NexaPlan</h1>
@@ -95,4 +89,5 @@ function Login() {
     </>
   );
 }
-export default Login
+export default Login;
+

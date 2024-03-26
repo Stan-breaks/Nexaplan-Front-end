@@ -20,7 +20,7 @@ function ProjectPage() {
   const [comments, setComments] = useState({});
   const handleSubmit = () => {
     const data = { ...newTask, category: project.projectName };
-    fetch(`http://127.0.0.1:8000/projectTasks/${id}`, {
+    fetch(`https://nexaplanbackend.onrender.com/projectTasks/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ function ProjectPage() {
     }, 1000);
   };
   const handleProjectClick = () => {
-    fetch(`http://127.0.0.1:8000/projectHandling/${id}`, {
+    fetch(`https://nexaplanbackend.onrender.com/projectHandling/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ function ProjectPage() {
   };
   const handleAddCollaborator = () => {
     const data = { collaborator: newCollaborator };
-    fetch(`http://127.0.0.1:8000/projectCollaborators/${id}`, {
+    fetch(`https://nexaplanbackend.onrender.com/projectCollaborators/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,17 +66,17 @@ function ProjectPage() {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/projectView/${id}`)
+    fetch(`https://nexaplanbackend.onrender.com/projectView/${id}`)
       .then((response) => response.json())
       .then((response) => {
         setProject(response);
       });
-    fetch(`http://127.0.0.1:8000/usersList/${id}`)
+    fetch(`https://nexaplanbackend.onrender.com/usersList/${id}`)
       .then((response) => response.json())
       .then((response) => {
         setPeople(response);
       });
-    fetch(`http://127.0.0.1:8000/comment${id}`)
+    fetch(`https://nexaplanbackend.onrender.com/comment${id}`)
       .then((response) => response.json())
       .then((response) => {
         setComments(response);

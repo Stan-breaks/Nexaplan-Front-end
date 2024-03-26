@@ -6,83 +6,85 @@ import Layout from "../Layout";
 import { setId } from "../../reducers/actions";
 
 function TaskList() {
-    
- const user=useSelector(state=>state.user.user)
- const dispatch=useDispatch()
- const [tasks, setTasks] = useState([]);
- const [categories,setCategories]=useState("")
- const [projectCategories,setProjectCategories]=useState('')
- const [showAll,setShowAll]=useState(true)
- const [showProject,setShowProject]=useState(false)
- const [showLabel,setShowLabel]=useState(false)
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const [tasks, setTasks] = useState([]);
+  const [categories, setCategories] = useState("");
+  const [projectCategories, setProjectCategories] = useState("");
+  const [showAll, setShowAll] = useState(true);
+  const [showProject, setShowProject] = useState(false);
+  const [showLabel, setShowLabel] = useState(false);
 
+  useEffect(() => {
+    fetch(`https://nexaplanbackend.onrender.com/taskList?user=${user}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setTasks(data);
+      })
+      .catch((error) => console.error("There was an error!", error));
 
- useEffect(() => {
-   fetch(`http://127.0.0.1:8000/taskList?user=${user}`)
-     .then((response) => response.json())
-     .then((data) => {
-       console.log(data);
-       setTasks(data);
-     })
-     .catch((error) => console.error("There was an error!", error));
+    fetch(
+      `https://nexaplanbackend.onrender.com/categoryList?user=${user}&label=project`,
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setProjectCategories(data);
+      });
 
-    fetch(`http://127.0.0.1:8000/categoryList?user=${user}&label=project`)
-    .then((response)=>response.json())
-    .then((data)=>{
-      console.log(data)
-      setProjectCategories(data)
-    })
-
-    fetch(`http://127.0.0.1:8000/categoryList?user=${user}&label=label`)
+    fetch(
+      `https://nexaplanbackend.onrender.com/categoryList?user=${user}&label=label`,
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         setCategories(data);
       });
-    
- }, []);
-    const handleClick = (id) => {
-      console.log(id);
-      dispatch(setId(id));
-      window.location.href="/taskView"
-    };
-    const handleProjectClick=()=>{
-      setShowAll(false);
-      setShowLabel(false);
-      setShowProject(true);
-    }
-    const handleLabelClick=()=>{
-      setShowAll(false);
-      setShowLabel(true);
-      setShowProject(false);
-    }
-    const handleAllClick=()=>{
-     setShowAll(true)
-     setShowLabel(false)
-     setShowProject(false)
+  }, []);
+  const handleClick = (id) => {
+    console.log(id);
+    dispatch(setId(id));
+    window.location.href = "/taskView";
+  };
+  const handleProjectClick = () => {
+    setShowAll(false);
+    setShowLabel(false);
+    setShowProject(true);
+  };
+  const handleLabelClick = () => {
+    setShowAll(false);
+    setShowLabel(true);
+    setShowProject(false);
+  };
+  const handleAllClick = () => {
+    setShowAll(true);
+    setShowLabel(false);
+    setShowProject(false);
 
-     fetch(`http://127.0.0.1:8000/taskList?user=${user}`)
-       .then((response) => response.json())
-       .then((data) => {
-         console.log(data);
-         setTasks(data);
-       })
-       .catch((error) => console.error("There was an error!", error));
-    }
-    const handleCategoryClick = (category) => {
-      
-      fetch(`http://127.0.0.1:8000/taskCategories?user=${user}&category=${category}`)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setTasks(data);
-          setShowAll(true)
-          setShowLabel(false)
-          setShowProject(false)
-        })
-        .catch((error) => console.error("There was an error!", error));
-    };
-    
+    fetch(`https://nexaplanbackend.onrender.com/taskList?user=${user}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setTasks(data);
+      })
+      .catch((error) => console.error("There was an error!", error));
+  };
+  const handleCategoryClick = (category) => {
+    fetch(
+      `https://nexaplanbackend.onrender.com/taskCategories?user=${user}&category=${category}`,
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setTasks(data);
+        setShowAll(true);
+        setShowLabel(false);
+        setShowProject(false);
+      })
+      .catch((error) => console.error("There was an error!", error));
+  };
+
   return (
     <Layout>
       <div className="tasklist">
@@ -100,9 +102,10 @@ function TaskList() {
                 <ul>
                   {categories.map((category) => {
                     return (
-                      <li key={category}
-                      onClick={()=>handleCategoryClick(category)}
-                      className="category"
+                      <li
+                        key={category}
+                        onClick={() => handleCategoryClick(category)}
+                        className="category"
                       >
                         {category}
                       </li>
@@ -171,4 +174,5 @@ function TaskList() {
     </Layout>
   );
 }
-export default TaskList
+export default TaskList;
+

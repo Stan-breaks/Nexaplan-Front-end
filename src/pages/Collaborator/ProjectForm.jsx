@@ -3,12 +3,10 @@ import Layout from "../Layout";
 import { useState } from "react";
 
 function ProjectForm() {
-  const user=useSelector(state=>state.user.user);
- 
+  const user = useSelector((state) => state.user.user);
 
   const [projectName, setProjectName] = useState("");
   const [description, setDescription] = useState("");
- 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,13 +15,13 @@ function ProjectForm() {
       description,
       user,
     };
-    fetch(`http://127.0.0.1:8000/projectList?user=${user}`,{
-      method:'POST',
-      body:JSON.stringify(project)
+    fetch(`https://nexaplanbackend.onrender.com/projectList?user=${user}`, {
+      method: "POST",
+      body: JSON.stringify(project),
     })
-    .then(response=>response.json())
-    .then(response=>console.log(response));
-    window.location.href="./projectList"
+      .then((response) => response.json())
+      .then((response) => console.log(response));
+    window.location.href = "./projectList";
   };
 
   return (
@@ -55,7 +53,7 @@ function ProjectForm() {
             required
           />
         </div>
-        
+
         <button
           type="submit"
           className="btn btn-primary"

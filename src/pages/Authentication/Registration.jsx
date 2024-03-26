@@ -3,53 +3,49 @@ import { setUser } from "../../reducers/actions";
 import { useDispatch } from "react-redux";
 
 function Registration() {
-  const[userName,setUserName]=useState('');
-  const[email,setEmail]=useState('');
-  const[password,setPassword]=useState('');
-  const[confirmPassword,setConfirmPassword]=useState('');
-  
-  const dispatch=useDispatch()
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const dispatch = useDispatch();
 
   const validateEmail = (email) => {
     return email.match(
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     );
   };
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (!validateEmail(email)
-    ) {
-        document.querySelector(".error").style.display = "block";
-    }
-    else{
-        if (password!=confirmPassword) {
+    if (!validateEmail(email)) {
+      document.querySelector(".error").style.display = "block";
+    } else {
+      if (password != confirmPassword) {
         document.querySelector(".match").style.display = "block";
-        }
-        else{
-          const user={
-            userName,
-            email,
-            password,
-          }
-          console.log(user);
-          fetch("http://127.0.0.1:8000/register",{
-            method:'POST',
-            body:JSON.stringify(user)
-          })
-            .then((response) => response.json())
-            .then((response) => {
-              console.log(response)
-              dispatch(setUser(userName))
-              window.location.href = "/home";
-            });
-            
-        }       
+      } else {
+        const user = {
+          userName,
+          email,
+          password,
+        };
+        console.log(user);
+        fetch("https://nexaplanbackend.onrender.com/register", {
+          method: "POST",
+          body: JSON.stringify(user),
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            console.log(response);
+            dispatch(setUser(userName));
+            window.location.href = "/home";
+          });
+      }
     }
   };
-  const loginClick=(e)=>{
+  const loginClick = (e) => {
     e.preventDefault();
-    window.location.href="/"
+    window.location.href = "/";
   };
   return (
     <>
@@ -115,7 +111,7 @@ function Registration() {
             className="form-control"
             id="exampleInputPassword2"
             value={confirmPassword}
-            onChange={(e)=>setConfirmPassword(e.target.value)}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </div>

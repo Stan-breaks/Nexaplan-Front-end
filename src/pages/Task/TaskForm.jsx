@@ -4,38 +4,34 @@ import Layout from "../Layout";
 import { useState } from "react";
 
 function TaskForm() {
-  const user=useSelector((state)=>state.user)
+  const user = useSelector((state) => state.user);
 
-  const[task,setTask]=useState({
-    taskName:"",
-    isPriority:false,
-    taskDescription:"",
-    category:"",
-    done:false,
-    user:user.user
-  })
-  
+  const [task, setTask] = useState({
+    taskName: "",
+    isPriority: false,
+    taskDescription: "",
+    category: "",
+    done: false,
+    user: user.user,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user===''){
-      window.location.href='/'
-    }
-    else{
-      fetch("http://127.0.0.1:8000/taskList", {
+    if (user === "") {
+      window.location.href = "/";
+    } else {
+      fetch("https://nexaplanbackend.onrender.com/taskList", {
         method: "POST",
         body: JSON.stringify(task),
       })
         .then((response) => response.json())
         .then((response) => {
           console.log(response);
-          window.location.href="./taskList";
+          window.location.href = "./taskList";
         });
       console.log(task);
     }
- 
-  }
-
+  };
 
   return (
     <Layout>
@@ -50,7 +46,7 @@ function TaskForm() {
             className="form-control"
             id="text1"
             value={task.taskName}
-            onChange={(e) => setTask({...task,taskName:e.target.value})}
+            onChange={(e) => setTask({ ...task, taskName: e.target.value })}
             required
           />
         </div>
@@ -62,10 +58,12 @@ function TaskForm() {
             className="form-control"
             id="description"
             value={task.taskDescription}
-            onChange={(e) => setTask({...task,taskDescription:e.target.value})}
+            onChange={(e) =>
+              setTask({ ...task, taskDescription: e.target.value })
+            }
             required
           />
-          </div>
+        </div>
         <div className="mb-3">
           <label htmlFor="dueDate" className="form-label">
             Due Date
@@ -75,21 +73,21 @@ function TaskForm() {
             className="form-control"
             id="dueDate"
             value={task.dueDate}
-            onChange={(e) => setTask({...task,dueDate:e.target.value})}
+            onChange={(e) => setTask({ ...task, dueDate: e.target.value })}
             required
           />
         </div>
         <div className="mb-3 ">
-           <label className="form-label" htmlFor="label">
-            Category of Label : 
-           </label>
-           <input
-           type="text"
-           className="form-control"
-           id="label"
-           value={task.category}
-           onChange={(e)=>setTask({...task,category:e.target.value})}
-           />
+          <label className="form-label" htmlFor="label">
+            Category of Label :
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="label"
+            value={task.category}
+            onChange={(e) => setTask({ ...task, category: e.target.value })}
+          />
         </div>
         <div className="mb-3 form-check">
           <input
@@ -97,7 +95,7 @@ function TaskForm() {
             className="form-check-input"
             id="exampleCheck1"
             checked={task.isPriority}
-            onChange={(e) => setTask({...task,isPriority:e.target.checked})}
+            onChange={(e) => setTask({ ...task, isPriority: e.target.checked })}
           />
           <label className="form-check-label" htmlFor="exampleCheck1">
             prioritize
@@ -114,4 +112,5 @@ function TaskForm() {
     </Layout>
   );
 }
-export default TaskForm
+export default TaskForm;
+

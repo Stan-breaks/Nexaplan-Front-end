@@ -5,37 +5,41 @@ import { useSelector } from "react-redux";
 import { json } from "react-router-dom";
 
 function Setting() {
-  const user=useSelector(state=>state.user.user)
-  const [userInfo,setUserInfo]=useState({username:"",email:"",password:"",confirmPassword:""});
+  const user = useSelector((state) => state.user.user);
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const handleSave = () => {
-  
-      if (userInfo.password !== userInfo.confirmPassword) {
-        alert("Passwords do not match!");
-      } else {
-        fetch(`http://127.0.0.1:8000/settings?user=${user}`, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userInfo),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            alert("Changes saved successfully!");
-          });
-      }
+    if (userInfo.password !== userInfo.confirmPassword) {
+      alert("Passwords do not match!");
+    } else {
+      fetch(`https://nexaplanbackend.onrender.com/settings?user=${user}`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          alert("Changes saved successfully!");
+        });
+    }
   };
-   useEffect(()=>{
-    fetch(`http://127.0.0.1:8000/settings?user=${user}`)
-    .then(response=>response.json())
-    .then(data=>{
-        setUserInfo({...userInfo,...data})
-        console.log(data)
-    })
-   },[])
-  
- console.log(userInfo);
+  useEffect(() => {
+    fetch(`https://nexaplanbackend.onrender.com/settings?user=${user}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setUserInfo({ ...userInfo, ...data });
+        console.log(data);
+      });
+  }, []);
+
+  console.log(userInfo);
   return (
     <Layout>
       <div className="settings">
@@ -46,7 +50,9 @@ function Setting() {
             <input
               type="text"
               value={userInfo.username}
-              onChange={(e) => setUserInfo({...userInfo,username:e.target.value})}
+              onChange={(e) =>
+                setUserInfo({ ...userInfo, username: e.target.value })
+              }
             />
           </label>
           <label>
@@ -54,7 +60,9 @@ function Setting() {
             <input
               type="email"
               value={userInfo.email}
-              onChange={(e) => setUserInfo({...userInfo,email:e.target.value})}
+              onChange={(e) =>
+                setUserInfo({ ...userInfo, email: e.target.value })
+              }
             />
           </label>
           <label>
@@ -62,7 +70,9 @@ function Setting() {
             <input
               type="password"
               value={userInfo.password}
-              onChange={(e) => setUserInfo({...userInfo,password:e.target.value})}
+              onChange={(e) =>
+                setUserInfo({ ...userInfo, password: e.target.value })
+              }
             />
           </label>
           <label>
@@ -70,7 +80,9 @@ function Setting() {
             <input
               type="password"
               value={userInfo.confirmPassword}
-              onChange={(e) => setUserInfo({...userInfo,confirmPassword:e.target.value})}
+              onChange={(e) =>
+                setUserInfo({ ...userInfo, confirmPassword: e.target.value })
+              }
             />
           </label>
           <button type="button" onClick={handleSave}>
